@@ -70,7 +70,7 @@ from datetime import datetime
 
 today = datetime.now()
 
-client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
+client = pymongo.MongoClient("mongodb://id:pwd@1.23.45.6:27017")
 db = client.joongo
 collection = db["D{}".format(today.strftime('%y%m%d%H'))]
 collection.insert(nara)
