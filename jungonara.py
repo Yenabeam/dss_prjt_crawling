@@ -6,7 +6,7 @@ def joongonara():
     from selenium.webdriver import ActionChains
     import time
 
-    url = 'https://m.joongna.com/search-list/product?searchword={}%20{}&dateFilter=1'.format("맥북", "프로")
+    url = 'https://m.joongna.com/search-list/product?searchword={}%20{}&dateFilter=7'.format("맥북", "프로")
     options = webdriver.ChromeOptions()
     options.add_argument("user-agent={}".format(UserAgent().chrome))
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36")
@@ -70,7 +70,7 @@ from datetime import datetime
 
 today = datetime.now()
 
-client = pymongo.MongoClient("mongodb://id:pwd@1.23.45.6:27017")
+client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
 db = client.joongo
 collection = db["D{}".format(today.strftime('%y%m%d%H'))]
 collection.insert(nara)
