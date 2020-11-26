@@ -1,9 +1,10 @@
+# Send kakao talk message
 def send_msg():
     import requests
     import json
+    from create_token import create_token
 
-    with open("kakao_code.json", "r") as fp:
-        user_datas = json.load(fp)
+    user_datas = create_token()
 
     url = "https://kapi.kakao.com/v2/user/me"
 
@@ -13,7 +14,7 @@ def send_msg():
 
     response = requests.get(url, headers=headers)
 
-    msg = "따끈따끈한 중고 매물이 등장했습니다!! 지금 바로 확인하세요!"
+    msg = "따끈따끈한 중고 매물이 나타났습니다!! 지금 바로 확인하세요!"
 
     params = {
         "object_type" : "feed",
