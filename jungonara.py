@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 
-def joongonara():
-    from selenium import webdriver
-    from fake_useragent import UserAgent
-    from selenium.webdriver import ActionChains
-    import time
+from selenium import webdriver
+from fake_useragent import UserAgent
+from selenium.webdriver import ActionChains
+import pandas as pd
+import time
+import pymongo
+from datetime import datetime
 
-    url = 'https://m.joongna.com/search-list/product?searchword={}%20{}&dateFilter=7'.format("맥북", "프로")
+def joongonara():
+    
+
+    url = 'https://m.joongna.com/search-list/product?searchword={}&dateFilter=7'.format("맥북 프로")
     options = webdriver.ChromeOptions()
     options.add_argument("user-agent={}".format(UserAgent().chrome))
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36")
@@ -60,17 +65,12 @@ def joongonara():
         
     driver.quit()
     
-    return df
+    today = datetime.now()
 
-
-nara = joongonara()
-
-import pymongo
-from datetime import datetime
-
-today = datetime.now()
-
-client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
-db = client.joongo
-collection = db["D{}".format(today.strftime('%y%m%d%H'))]
-collection.insert(nara)
+    client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
+    db = client.joongo
+    # collection = db["D{}".format(today.strftime('%y%m%d%H'))]
+    collection = db["D{}".format(today.strftime('%y%m%d'))]
+    collection.insert(df)
+    
+    return pd.DataFrame(df)
