@@ -14,8 +14,8 @@ def load_db():
     
     # load database
     client = pymongo.MongoClient(mongodb_ip["my_ip"])
-    joongo_df = pd.DataFrame(client.joongo["D20112515"].find()).drop(columns='_id')
     # joongo_df = pd.DataFrame(client.joongo["D{}".format(today.strftime('%y%m%d%H'))].find()).drop(columns='_id')
+    joongo_df = pd.DataFrame(client.joongo["D{}".format(today.strftime('%y%m%d'))].find()).drop(columns='_id')
     
     # preprocessing
     joongo_df["price"] = joongo_df["price"].str.replace("원","").str.replace(",","").astype('int')
@@ -26,7 +26,11 @@ def load_db():
     joongo_df.sort_values(by="price", inplace=True)
     joongo_df.reset_index(inplace=True, drop=True)
     
+    # insert into database
     if (joongo_df['price'] < 500000).sum():
         send_msg()
+    
+    collection = client.joongo["D{}R".format(today.strftime('%y%m%d'))]
+    collection.insert(joongo_df.to_dict("records"))
     
     return joongo_df
