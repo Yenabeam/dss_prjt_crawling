@@ -2,9 +2,9 @@
 def send_msg():
     import requests
     import json
-    from create_token import create_token
+    from kakao_token import refresh_token
 
-    user_datas = create_token()
+    user_datas = refresh_token()
 
     url = "https://kapi.kakao.com/v2/user/me"
 
