@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>카카오 맵</title>
+</head>
+<body>
+	<div id="map" style="width:100%;height:100vh;"></div>
+
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4f5517aee51dd99d425c74f27bae8e2f&libraries=clusterer"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(37.55321, 126.972613), // 지도의 중심좌표
+		        level: 3, // 지도의 확대 레벨
+		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+		    }; 
+
+		// 지도를 생성한다 
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		// 마커 클러스터러를 생성합니다 
+		var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+        minLevel: 10 // 클러스터 할 최소 지도 레벨 
+    	});
+		
+		var 데이터 = [
+			[37.55321, 126.972613, '<div style="padding:5px;"><br><a href="https://www.daangn.com/articles/153142981" style="color:blue" target="_blank">2019년형 맥북(MacBook) 에어 레티나 13인치 노트북 a1932 </a> </br> 750,000원 </div>'],
+			[37.558907, 126.978305, '<div style="padding:5px;"><br><a href="https://www.daangn.com/articles/154263336" style="color:blue" target="_blank">Macbook Pro (Retina, 15-inch, Late 2013) 맥북 프로 15인치 고급형 100만원 </a> </br> 850,000원 </div>'],
+			[37.544647, 126.971986, '<div style="padding:5px;"><br><a href="https://www.daangn.com/articles/150455627" style="color:blue" target="_blank">Macbook Pro 15inch 맥북 프로 15인치 2017년 (스페이스그레이) </a> </br> 1,500,000원 </div>']
+		]
+
+		var markers = [];
+
+		for (var i=0; i < 데이터.length; i++) {
+
+		// 마커를 생성합니다
+		  var marker = new kakao.maps.Marker({
+			position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커가 표시될 위치입니다 
+            map: map, // 마커가 지도 위에 표시되도록 설정합니다
+            clickable: true 
+          });
+          // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+          var iwContent = 데이터[i][2], // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+
+		// 인포윈도우를 생성합니다
+		  var infowindow = new kakao.maps.InfoWindow({
+            content: iwContent,
+            removable : iwRemoveable
+		  });
+		
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker); 
+        markers.push(marker);
+        kakao.maps.event.addListener(marker, 'click', function() {
+                // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);  
+        });
+		
+	  }
+	  // 클러스터러에 마커들을 추가합니다
+	  clusterer.addMarkers(markers);
+
+	</script>
+</body>
+</html>
