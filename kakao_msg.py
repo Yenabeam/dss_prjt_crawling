@@ -36,5 +36,7 @@ def send_msg():
 
     payload = "template_object=" + str(json.dumps(params))
     response = requests.post(url, payload, headers=headers)
-
-    print(response, response.text)
+    if response.text == '{"result_code":0}':
+        print("Success!!")
+    else:
+        print("Error in send_msg!!")
