@@ -33,4 +33,6 @@ def load_db():
     collection = client.joongo["D{}R".format(today.strftime('%y%m%d'))]
     collection.insert(joongo_df.to_dict("records"))
     
+    print("Update db")
+    
     return joongo_df
