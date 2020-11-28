@@ -73,4 +73,6 @@ def joongonara():
     collection = db["D{}".format(today.strftime('%y%m%d'))]
     collection.insert(df)
     
+    print("Done Crawling and Update Mongodb")
+    
     return pd.DataFrame(df)
