@@ -1,6 +1,7 @@
 <meta charset="UTF-8">
 <html>
-<table class="type04">
+<button onclick="sortTable()">가격순</button>
+<table class="type04" id='ProductList'>
     <style>
         table.type04 {
             border-collapse: separate;
@@ -23,29 +24,29 @@
             vertical-align: top;
             border-bottom: 1px solid #ccc;
         }
-        </style>
+      </style>
 
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>pid</th>
       <th>name</th>
       <th>price</th>
       <th>location</th>
       <th>description_for_detail</th>
       <th>num_item_view</th>
+      <th>url</th>
     </tr>
   </thead>
   <tbody>
     {% for i in data %}
     <tr>
-        <th>i</th>
-        <td>{{i.pid}}</td>
+        <td>{{i.pid}} </td>
         <td>{{i.name}}</td>
         <td>{{i.price}}</td>
         <td>{{i.location}}</td>
         <td>{{i.description_for_detail}}</td>
         <td>{{i.num_item_view}}</td>
+        <td>{{i.url}}</td>
     </tr>
     {% endfor %}
   </tbody>
