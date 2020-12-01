@@ -30,7 +30,8 @@ def bot():
         
         !bot 정보:
         !bot 시세:100
-        !bot 인치:13        
+        !bot 인치:13
+        !bot 지역:서울
         """
         slack.send_msg(Config.webhook_url, msg)
         return Response(), 200
@@ -50,6 +51,9 @@ def bot():
     elif "정보" in comm:
         msg = "http://fleafully.com/"
         slack.send_msg(Config.webhook_url, msg)    
+    elif "지역" in comm:
+        msg = fleafully.locate(data)
+        slack.send_msg(Config.webhook_url, msg) 
     else:
         msg = "{}은(는)없는 명령입니다.".format(comm)
         
