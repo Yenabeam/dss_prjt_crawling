@@ -16,7 +16,7 @@ def index():
 @app.route("/bot", methods=['POST'])
 def bot():
     
-    username = request.form.get('user_name') 
+    username = request.form.get('user_name')
     token = request.form.get('token')
     text = request.form.get('text')
     
@@ -24,11 +24,12 @@ def bot():
     
     # 문장 형식이 맞는지 확인
     if text.find(":") < 0:
-        msg = """(명령):(데이터) 포멧으로 입력해주세요.
+        msg = """(명령):(데이터) 포멧으로 입력해주세요. :robot_face:
         
 명령어 예시)
         
         !bot 정보:
+        !bot 추천:
         !bot 시세:100
         !bot 인치:13
         !bot 지역:서울
@@ -49,11 +50,14 @@ def bot():
         msg = fleafully.inch(data)
         slack.send_msg(Config.webhook_url, msg)
     elif "정보" in comm:
-        msg = "http://fleafully.com/"
+        msg = "TOP4 중고 마켓 매물을 한눈에 보자! :eyes: \n http://fleafully.com/"
         slack.send_msg(Config.webhook_url, msg)    
     elif "지역" in comm:
         msg = fleafully.locate(data)
-        slack.send_msg(Config.webhook_url, msg) 
+        slack.send_msg(Config.webhook_url, msg)
+    elif "추천" in comm:
+        msg = fleafully.suggest()
+        slack.send_msg(Config.webhook_url, msg)
     else:
         msg = "{}은(는)없는 명령입니다.".format(comm)
         
