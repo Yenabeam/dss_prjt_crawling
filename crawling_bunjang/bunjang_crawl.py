@@ -1,6 +1,7 @@
 # mongo id / pw 확인할것 
 import requests
 import json
+import pandas as pd 
 
 #크롤링 함수 
 def bunjang(key_word, pages):
@@ -34,7 +35,7 @@ from datetime import datetime
 bunjang = bunjang_df.to_dict("records")
 today = datetime.now()
 
-client = pymongo.MongoClient("mongodb://d:d@00.00.00.000:00000")
+client = pymongo.MongoClient("mongodb://dss:dss@15.165.128.7:27017")
 db = client.joongo
 collection = db["D{}".format(today.strftime('%y%m%d%H'))]
 collection.insert(bunjang)

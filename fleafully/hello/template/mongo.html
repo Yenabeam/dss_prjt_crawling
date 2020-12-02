@@ -1,6 +1,5 @@
 <meta charset="UTF-8">
 <html>
-<button onclick="sortTable()">가격순</button>
 <table class="type04" id='ProductList'>
     <style>
         table.type04 {
@@ -46,7 +45,7 @@
         <td>{{i.location}}</td>
         <td>{{i.description_for_detail}}</td>
         <td>{{i.num_item_view}}</td>
-        <td>{{i.url}}</td>
+        <td><a href= "{{i.url}}">바로가기</a></td>
     </tr>
     {% endfor %}
   </tbody>

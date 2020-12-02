@@ -22,7 +22,7 @@ def load_mail():
         df = pd.DataFrame(list)
         df.to_excel('subscribe.xlsx',encoding='utf-8')
     return df 
-
+load_mail()
 #-----------------------메일발송함수---------------------
 
 from email.mime.text import MIMEText
@@ -77,7 +77,7 @@ from openpyxl import load_workbook
 wb = load_workbook('subscribe.xlsx')
 ws = wb.active
 for row in ws.iter_rows():
-    addr = row[3].value
-    subj_layout = '[fleafully]{}님에게 누구보다 빠르게 최저가알림'.format(row[1].value)
+    addr = row[1].value
+    subj_layout = '[fleafully]{}님에게 누구보다 빠르게 최저가알림'.format(row[3].value)
     cont_layout = '요청하신 {}원 이하의 물건 정보 입니다.'.format(row[2].value)
     send_mail(addr, subj_layout, cont_layout)
