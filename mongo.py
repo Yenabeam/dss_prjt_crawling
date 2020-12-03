@@ -1,20 +1,23 @@
 import pymongo
 import re
 import pandas as pd
-import json
+import boto3
+import configparser
+import sys
 from datetime import datetime
 from kakao_msg import send_msg
+from slack_msg import send_msg2
 
 # load data from mongodb
 def load_db():
     today = datetime.now()
 
-    with open("mongodb_ip.json", "r") as fp:
-        mongodb_ip = json.load(fp)
+    config = configparser.ConfigParser()
+    config.read('/home/ubuntu/masterpiece/mongo.ini')
+    mongodb_ip = config["mongo"]
     
     # load database
-    client = pymongo.MongoClient(mongodb_ip["my_ip"])
-    # joongo_df = pd.DataFrame(client.joongo["D{}".format(today.strftime('%y%m%d%H'))].find()).drop(columns='_id')
+    client = pymongo.MongoClient(mongodb_ip["ip_address"])
     joongo_df = pd.DataFrame(client.joongo["D{}".format(today.strftime('%y%m%d'))].find()).drop(columns='_id')
     
     # preprocessing
@@ -27,8 +30,13 @@ def load_db():
     joongo_df.reset_index(inplace=True, drop=True)
     
     # insert into database
-    if (joongo_df['price'] < 500000).sum():
+    items = joongo_df['title'].count()
+    if items:
         send_msg()
+        send_msg2("""
+        매물 {}건 득템 기회!! 지금 바로 잡자! 
+        http://fleafully.com/
+        """.format(items))
     
     collection = client.joongo["D{}R".format(today.strftime('%y%m%d'))]
     collection.insert(joongo_df.to_dict("records"))
