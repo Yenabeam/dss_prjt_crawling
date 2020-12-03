@@ -5,13 +5,14 @@ from fake_useragent import UserAgent
 from selenium.webdriver import ActionChains
 import pandas as pd
 import time
+import configparser
 import pymongo
 from datetime import datetime
 
-def joongonara():
+def joongonara(keyword):
     
 
-    url = 'https://m.joongna.com/search-list/product?searchword={}&dateFilter=7'.format("맥북 프로")
+    url = 'https://m.joongna.com/search-list/product?searchword={}&dateFilter=7'.format(keyword)
     options = webdriver.ChromeOptions()
     options.add_argument("user-agent={}".format(UserAgent().chrome))
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36")
@@ -58,7 +59,7 @@ def joongonara():
         except:
             region = None           
 
-        df.append({'title' : title, 'price' : price, 'region' : region, 'view_count' : view_count, 'desc' : desc, 'link' : link, 'market' : '중고나라'})
+        df.append({'title' : title, 'price' : price, 'region' : region, 'view_counts' : view_count, 'desc' : desc, 'link' : link, 'market' : '중고나라'})
         driver.quit()
         print(n, end= " ")
         n+=1
@@ -66,13 +67,16 @@ def joongonara():
     driver.quit()
     
     today = datetime.now()
+    
+    config = configparser.ConfigParser()
+    config.read('/home/ubuntu/masterpiece/mongo.ini')
+    mongodb_ip = config["mongo"]
 
-    client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
+    client = pymongo.MongoClient(mongodb_ip["ip_address"])
     db = client.joongo
-    # collection = db["D{}".format(today.strftime('%y%m%d%H'))]
     collection = db["D{}".format(today.strftime('%y%m%d'))]
     collection.insert(df)
     
-    print("Done Crawling and Update Mongodb")
+    print("Done Crawling and Insert into Mongodb")
     
     return pd.DataFrame(df)
