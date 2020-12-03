@@ -3,6 +3,7 @@
 import pymongo
 import pandas as pd
 import configparser
+from datetime import datetime
 
 
 def mongo_ip():
@@ -13,7 +14,8 @@ def mongo_ip():
 
 def count(price):
     client = pymongo.MongoClient(mongo_ip())
-    joongo_df = pd.DataFrame(client.joongo["D201202R"].find())
+    today = datetime.now()
+    joongo_df = pd.DataFrame(client.joongo["D{}R".format(today.strftime('%y%m%d'))].find())
     num = joongo_df[joongo_df['price'] < int(price)*10000]['price'].count()    
     return """
     {}만원 이하 매물은 총 {}개입니다. :blush:
@@ -22,7 +24,8 @@ def count(price):
 
 def inch(size):
     client = pymongo.MongoClient(mongo_ip())
-    joongo_df = pd.DataFrame(client.joongo["D201202R"].find())
+    today = datetime.now()
+    joongo_df = pd.DataFrame(client.joongo["D{}R".format(today.strftime('%y%m%d'))].find())
     num = joongo_df[joongo_df['inch'] == size]['inch'].count()
     return """
     {}인치 매물은 총 {}개입니다. :blush:
@@ -31,7 +34,8 @@ def inch(size):
 
 def locate(addr):
     client = pymongo.MongoClient(mongo_ip())
-    joongo_df = pd.DataFrame(client.joongo["D201202R"].find())
+    today = datetime.now()
+    joongo_df = pd.DataFrame(client.joongo["D{}R".format(today.strftime('%y%m%d'))].find())
     df = []
     for _, item in joongo_df[joongo_df['region'].notnull()].iterrows():
         if addr in item["region"]:
@@ -44,7 +48,8 @@ def locate(addr):
 
 def suggest():
     client = pymongo.MongoClient(mongo_ip())
-    joongo_df = pd.DataFrame(client.joongo["D201202R"].find())
+    today = datetime.now()
+    joongo_df = pd.DataFrame(client.joongo["D{}R".format(today.strftime('%y%m%d'))].find())
     good_items = joongo_df[['title', 'price', 'link', 'inch', 'year']].dropna()
     good_items[['inch', 'year']] = good_items[['inch', 'year']].astype('int')
     good_items['points'] = round(good_items['price'] / ((good_items['inch'] - 10) * (good_items['year'] - 2000) ** 2))
