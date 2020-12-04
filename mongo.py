@@ -22,10 +22,41 @@ def load_db():
     
     # preprocessing
     joongo_df["price"] = joongo_df["price"].str.replace("원","").str.replace(",","").astype('int')
-    joongo_df["inch"] = list(re.findall("([1-9]+)\s?[인치inch]", title)[0] if re.findall("([1-9]+)\s?[인치inch]", title) != [] else None for title in joongo_df["title"])
-    joongo_df["year"] = list(re.findall("20[0-1]{1}[0-9]{1}", title)[0] if re.findall("20[0-1]{1}[0-9]{1}", title) != [] else None for title in joongo_df["title"])
     idx = joongo_df[joongo_df['price'] < 100000].index
     joongo_df.drop(index=idx, inplace=True)
+    
+    # regex
+    jungo_df=[]
+    
+    for idx, row in joongo_df.iterrows():
+        
+        if re.findall("(1{1}[1-9]{1})\s?인치", row['title']):
+            row['inch'] = re.findall("(1{1}[356]{1})\s?인치", row['title'])[0]
+        elif re.findall("(1{1}[1-9]{1})\s?inch", row['title']):
+            row['inch'] = re.findall("(1{1}[356]{1})\s?inch", row['title'])[0]
+        elif re.findall("\s+(1{1}[356]{1})\s+", row['title']):
+            row['inch'] = re.findall("\s+(1{1}[356]{1})\s+", row['title'])[0]
+        else:
+            None
+            
+        jungo_df.append(row)
+        
+    joongo_df = pd.DataFrame(jungo_df)
+    
+    jungo_df = []
+    for idx, row in joongo_df.iterrows():
+
+        if re.findall("20[0-2]{1}[0-9]{1}", row['title']):
+            row['year'] = re.findall("20[0-2]{1}[0-9]{1}", row['title'])[0]
+        elif re.findall("([0-2]{1}[0-9]{1})\s?년", row['title']):
+            row['year'] = "20" + re.findall("([0-2]{1}[0-9]{1})\s?년", row['title'])[0]
+        else:
+            None
+
+        jungo_df.append(row)
+
+    joongo_df = pd.DataFrame(jungo_df)
+    
     joongo_df.sort_values(by="price", inplace=True)
     joongo_df.reset_index(inplace=True, drop=True)
     
@@ -44,3 +75,5 @@ def load_db():
     print("Update db")
     
     return joongo_df
+
+load_db()
