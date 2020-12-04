@@ -20,7 +20,7 @@ def count(price):
     return """
     {}만원 이하 매물은 총 {}개입니다. :blush:
     {}
-    """.format(price, num, joongo_df[joongo_df['price'] < int(price)*10000]['link'].to_string())
+    """.format(price, num, joongo_df[joongo_df['price'] < int(price)*10000]['link'][:10].to_string())
 
 def inch(size):
     client = pymongo.MongoClient(mongo_ip())
@@ -30,7 +30,7 @@ def inch(size):
     return """
     {}인치 매물은 총 {}개입니다. :blush:
     {}
-    """.format(size, num, joongo_df[joongo_df['inch'] == size]['link'].reset_index(drop=True).to_string())
+    """.format(size, num, joongo_df[joongo_df['inch'] == size]['link'][:10].reset_index(drop=True).to_string())
 
 def locate(addr):
     client = pymongo.MongoClient(mongo_ip())
@@ -44,7 +44,7 @@ def locate(addr):
     return """
     {} 매물은 총 {}개입니다. :blush:
     {}
-    """.format(addr, df[0].count(), df[0].to_string())
+    """.format(addr, df[0].count(), df[0][:10].to_string())
 
 def suggest():
     client = pymongo.MongoClient(mongo_ip())
@@ -52,7 +52,7 @@ def suggest():
     joongo_df = pd.DataFrame(client.joongo["D{}R".format(today.strftime('%y%m%d'))].find())
     good_items = joongo_df[['title', 'price', 'link', 'inch', 'year']].dropna()
     good_items[['inch', 'year']] = good_items[['inch', 'year']].astype('int')
-    good_items['points'] = round(good_items['price'] / ((good_items['inch'] - 10) * (good_items['year'] - 2000) ** 2))
+    good_items['points'] = round(good_items['price'] / ((good_items['inch'] - 10) * (good_items['year'] - 2003) ** 2))
     good_items = good_items.sort_values(by='points').reset_index(drop=True)
     return """
     오늘의 추천 매물입니다. :smile:
