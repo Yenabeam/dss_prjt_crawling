@@ -7,22 +7,20 @@ import pandas as pd
 import time
 import configparser
 import pymongo
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def overview(keyword):
     
 
     url = 'https://m.joongna.com/search-list/product?searchword={}&dateFilter=1'.format(keyword)
     options = webdriver.ChromeOptions()
-    options.add_argument("user-agent={}".format(UserAgent().chrome))
+#     options.add_argument("user-agent={}".format(UserAgent().chrome))
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36")
     options.add_argument("headless")    
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     
-    tag = driver.find_element_by_xpath('//*[@id="root"]/div[1]/div[2]/div[1]/div/button')
-
-    links = driver.find_elements_by_css_selector('.pd_h20 div > div > a')
+    links = driver.find_elements_by_css_selector('.pd_h20 div > div > a')[:20]
     print("loaded {} items!!!".format(len(links)))    
     df = []
     n=1
@@ -49,9 +47,9 @@ def overview(keyword):
         try:
             region = driver.find_elements_by_css_selector('button .f15')[0].text
         except:
-            region = None           
+            region = None
 
-        df.append({'title' : title, 'price' : price, 'region' : region, 'view_count' : view_count, 'desc' : desc, 'link' : link, 'market' : '중고나라', 'keyword' : keyword})
+        df.append({'title' : title, 'price' : price, 'region' : region, 'view_counts' : view_count, 'desc' : desc, 'link' : link, 'market' : '중고나라', 'keyword' : keyword})
         driver.quit()
         print(n, end= " ")
         n+=1
@@ -59,6 +57,8 @@ def overview(keyword):
     driver.quit()
     
     today = datetime.now()
+    delta = timedelta(hours = 1)
+    today_1 = today - delta
     
     config = configparser.ConfigParser()
     config.read('/home/ubuntu/masterpiece/mongo.ini')
@@ -68,6 +68,7 @@ def overview(keyword):
     db = client.joongo
     collection = db["C{}".format(today.strftime('%y%m%d%H'))]
     collection.insert(df)
+    client.joongo.drop_collection("C{}".format(today_1.strftime('%y%m%d%H')))
     
     print("Done Crawling and Insert into Mongodb")
     
