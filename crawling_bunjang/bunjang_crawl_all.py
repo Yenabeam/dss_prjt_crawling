@@ -35,7 +35,7 @@ def bunjang(key_word, pages):
         bunjang = bunjang_df.to_dict("records")
         today = datetime.now()
 
-        client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
+        client = pymongo.MongoClient("mongodb://ddd:ddd@0.00.00.0:27017")
         db = client.joongo
         collection = db["C{}".format(today.strftime('%y%m%d%H'))]
         collection.insert(bunjang)
