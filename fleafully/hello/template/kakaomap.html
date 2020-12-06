@@ -86,6 +86,12 @@
             
             // 지도 중심좌표를 접속위치로 변경합니다
             map.setCenter(locPosition); 
+            // setLevel 시 애니메이션 효과의 지속시간을 500ms로 설정
+            map.setLevel(6, {
+                animate: {
+                    duration: 1500
+                }
+            });
             
             // 마커가 드래그 가능하도록 설정합니다 
             markerUser.setDraggable(true); 
@@ -102,11 +108,11 @@
         fetch(url)
         .then((res) => res.json())
         .then(myJson => {
-         console.log(JSON.stringify(myJson.slice(0, 1000), null, 1))
+         console.log(JSON.stringify(myJson.slice(0, 1500), null, 1))
 
          var markers = [];
  
-         for (var i=0; i < myJson.slice(0, 1000).length; i++) {
+         for (var i=0; i < myJson.slice(0, 1500).length; i++) {
  
           // 마커를 생성합니다
           var marker = new kakao.maps.Marker({
@@ -116,7 +122,7 @@
            });
 
           // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-          var iwContent = '<div style="padding:5px;"><br><a href=' + myJson[i]["link"] + '>' + myJson[i]["title"] +' </a> </br> '+ myJson[i]["price"] +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          var iwContent = '<div style="padding:5px;"><br><a href=' + myJson[i]["link"] + ' '+ "target='_blank'>" + myJson[i]["title"] +' </a> </br> '+ myJson[i]["price"] +'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
               iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
  
           // 인포윈도우를 생성합니다

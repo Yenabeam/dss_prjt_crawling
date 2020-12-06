@@ -27,25 +27,25 @@
 
   <thead>
     <tr style="text-align: right;">
-      <th>pid</th>
-      <th>name</th>
+      <th>title</th>
       <th>price</th>
-      <th>location</th>
-      <th>description_for_detail</th>
-      <th>num_item_view</th>
+      <th>region</th>
+      <th>desc</th>
       <th>url</th>
+      <th>view_counts</th>
+      <th>market</th>
     </tr>
   </thead>
   <tbody>
     {% for i in data %}
     <tr>
-        <td>{{i.pid}} </td>
-        <td>{{i.name}}</td>
+        <td>{{i.title}} </td>
         <td>{{i.price}}</td>
-        <td>{{i.location}}</td>
-        <td>{{i.description_for_detail}}</td>
-        <td>{{i.num_item_view}}</td>
+        <td>{{i.region}}</td>
+        <td>{{i.desc}}</td>
         <td><a href= "{{i.url}}">바로가기</a></td>
+        <td>{{i.view_counts}}</td>
+        <td>{{i.market}}</td>
     </tr>
     {% endfor %}
   </tbody>
