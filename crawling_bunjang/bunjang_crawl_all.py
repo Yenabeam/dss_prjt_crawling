@@ -27,7 +27,7 @@ def bunjang(key_word, pages):
         df = pd.DataFrame(items)
         bunjang_df = df[['name','price','location','description_for_detail','num_item_view','pid']]
         bunjang_df = bunjang_df.rename({'name':'title','location':'region','description_for_detail':'desc','num_item_view':'view_counts'},axis='columns')
-        bunjang_df['url'] = 'https://m.bunjang.co.kr/products/'+ bunjang_df['pid']
+        bunjang_df['link'] = 'https://m.bunjang.co.kr/products/'+ bunjang_df['pid']
         bunjang_df['market'] = '번개장터'
         bunjang_df['keyword'] = key_word
         bunjang_df.drop(['pid'], axis=1)
@@ -35,7 +35,7 @@ def bunjang(key_word, pages):
         bunjang = bunjang_df.to_dict("records")
         today = datetime.now()
 
-        client = pymongo.MongoClient("mongodb://ddd:ddd@0.00.00.0:27017")
+        client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
         db = client.joongo
         collection = db["C{}".format(today.strftime('%y%m%d%H'))]
         collection.insert(bunjang)
