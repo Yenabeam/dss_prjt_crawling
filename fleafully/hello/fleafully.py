@@ -9,11 +9,12 @@ import pymysql
 import pymysql.cursors
 import time
 from datetime import datetime
-
+from config import Config
+app.config.from_object(Config)
 
 app = Flask(__name__)
 Bootstrap(app)
-db = pymysql.connect(host='15.165.128.7',port=3306, user= 'root', password='dss', db='UserInfo',charset='utf8')
+db = pymysql.connect(host=Config.MYSQL_YN_HOST,port=3306, user= Config.MYSQL_YN_USER, password=Config.MYSQL_YN_PW, db='UserInfo',charset='utf8')
 cursor = db.cursor()
 
 # 메인 페이지 
@@ -30,10 +31,10 @@ def category():
 today = datetime.now()
 @app.route('/no1')
 def no1():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
-    results = collection.find({'keyword':'자전거'}).sort('price')
+    results = collection.find({'keyword':'맥북 프로'}).sort('price')
     client.close()
     return render_template('mongo.html', data=results)
 
@@ -41,7 +42,7 @@ def no1():
 today = datetime.now()
 @app.route('/no2')
 def no2():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'패딩'}).sort('price')
@@ -52,7 +53,7 @@ def no2():
 today = datetime.now()
 @app.route('/no3')
 def no3():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'노트북'}).sort('price')
@@ -63,7 +64,7 @@ def no3():
 today = datetime.now()
 @app.route('/no4')
 def no4():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'의자'}).sort('price')
@@ -75,7 +76,7 @@ def no4():
 today = datetime.now()
 @app.route('/no5')
 def no5():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'아이폰'}).sort('price')
@@ -87,7 +88,7 @@ def no5():
 today = datetime.now()
 @app.route('/no6')
 def no6():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'아이패드'}).sort('price')
@@ -99,7 +100,7 @@ def no6():
 today = datetime.now()
 @app.route('/no7')
 def no7():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'캠핑'}).sort('price')
@@ -110,7 +111,7 @@ def no7():
 today = datetime.now()
 @app.route('/no8')
 def no8():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'냉장고'}).sort('price')
@@ -121,7 +122,7 @@ def no8():
 today = datetime.now()
 @app.route('/no9')
 def no9():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'컴퓨터'}).sort('price')
@@ -132,10 +133,10 @@ def no9():
 today = datetime.now()
 @app.route('/no10')
 def no10():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
-    results = collection.find({'keyword':'난로'}).sort('price')
+    results = collection.find({'keyword':'자전거'}).sort('price')
     client.close()
     return render_template('mongo.html', data=results)
 
@@ -144,7 +145,7 @@ def no10():
 today = datetime.now()
 @app.route('/no11')
 def no11():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'에어팟'}).sort('price')
@@ -155,7 +156,7 @@ def no11():
 today = datetime.now()
 @app.route('/no12')
 def no12():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
     collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
     results = collection.find({'keyword':'모니터'}).sort('price')
@@ -171,10 +172,10 @@ def map():
 #-------------가격 비교 사이트 mongo 연결 --------------
 @app.route('/list')
 def mongoTest():
-    client = MongoClient('mongodb://dss:dss@3.35.98.5:27017')
+    client = MongoClient(Config.MONGO_SJ_CLIENT)
     db = client.joongo
-    collection = db['D{}'.format(today.strftime('%y%m%d%H'))]
-    results = collection.find({}).sort('price')
+    collection = db['C{}'.format(today.strftime('%y%m%d%H'))]
+    results = collection.find({'keyword':'맥북 프로'}).sort('price')
     client.close()
     return render_template('mongo.html', data=results) 
 
@@ -182,7 +183,6 @@ def mongoTest():
 @app.route('/json')
 def json():
     return render_template('data.json') 
-
 
 #------------메일 발송 페이지------------
 @app.route('/mail', methods=['GET'])

@@ -3,7 +3,7 @@ import pymysql
 import pandas as pd 
 
 def load_mail():
-    conn = pymysql.connect(host = '00.000.00.0', user = 'user', password = 'user' ,db = 'UserInfo')
+    conn = pymysql.connect(host=Config.MYSQL_YN_HOST,port=3306, user= Config.MYSQL_YN_USER, password=Config.MYSQL_YN_PW ,db = 'UserInfo')
     curs = conn.cursor()
 
     sql = "SELECT * FROM UserInfo"

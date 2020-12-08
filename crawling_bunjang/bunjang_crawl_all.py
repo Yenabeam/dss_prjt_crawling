@@ -3,6 +3,7 @@ import json
 import pymongo
 from datetime import datetime
 import pandas as pd
+from config import Config
 
 
 def bunjang(key_word, pages):
@@ -35,13 +36,13 @@ def bunjang(key_word, pages):
         bunjang = bunjang_df.to_dict("records")
         today = datetime.now()
 
-        client = pymongo.MongoClient("mongodb://dss:dss@3.35.98.5:27017")
+        client = pymongo.MongoClient(Config.MONGO_SJ_CLIENT)
         db = client.joongo
         collection = db["C{}".format(today.strftime('%y%m%d%H'))]
         collection.insert(bunjang)
         return bunjang_df
     
-categories = ["자전거","패딩","노트북","의자","아이폰","아이패드","캠핑","냉장고","컴퓨터","난로","에어팟","모니터"]
+categories = ["자전거","패딩","노트북","의자","아이폰","아이패드","캠핑","냉장고","컴퓨터","맥북 프로","에어팟","모니터"]
 
 for category in categories:
     bunjang(category,10)
