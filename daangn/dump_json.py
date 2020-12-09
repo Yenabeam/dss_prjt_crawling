@@ -7,12 +7,12 @@ from datetime import datetime
 # load data from mongodb
 today = datetime.now()
 config = configparser.ConfigParser()
-config.read('/home/ubuntu/python3/projects/daangn/mongo.ini')
+config.read('/home/ubuntu/python3/projects/daangn/mongo.ini') # insert your mongo.ini address instead
 mongodb_ip = config["mongo"]
 
 client = pymongo.MongoClient(mongodb_ip["ip_address"])
-db = client.daangn
-collection = db["D{}".format(today.strftime('%y%m%d%H'))]
+db = client.daangn # use client.joongo when needed
+collection = db["C{}".format(today.strftime('%y%m%d%H'))]
 
 # Now creating a Cursor instance 
 # using find() function
