@@ -4,7 +4,8 @@ library('mongolite')
 library('rjson')
 
 # get mongo ip address from mongo.ini
-filepath <- '/Users/fofx/dss15/crawling_project/daangn/mongo.ini'
+filepath <- '/home/ubuntu/python3/projects/daangn/mongo.ini' # insert your mongo.ini path
+#filepath <- '/Users/fofx/dss15/crawling_project/daangn/mongo.ini'
 data <- read.ini(filepath, encoding = getOption("encoding"))
 
 # get current time
@@ -16,7 +17,7 @@ my_collection <- paste('D',toString(format(current_time, format = '%y%m%d%H', ma
 # get collection data from mongodb
 db <- mongo(
         collection = my_collection, 
-        db = "daangn",
+        db = "daangn", # change to "joongo" when needed
         url = data$mongo$ip_address, 
         verbose = TRUE
 ) 
