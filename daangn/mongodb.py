@@ -10,4 +10,4 @@ mongodb_ip = config["mongo"]
 
 client = pymongo.MongoClient(mongodb_ip["ip_address"])
 db = client.daangn
-collection = db["D{}".format(today.strftime('%y%m%d%H'))]
+collection = db["C{}".format(today.strftime('%y%m%d%H'))]
