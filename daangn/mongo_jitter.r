@@ -11,7 +11,7 @@ data <- read.ini(filepath, encoding = getOption("encoding"))
 # get current time
 current_time <- Sys.time()
 # change format
-my_collection <- paste('D',toString(format(current_time, format = '%y%m%d%H', mark=TRUE)), sep='')
+my_collection <- paste('C',toString(format(current_time, format = '%y%m%d%H', mark=TRUE)), sep='')
 
 
 # get collection data from mongodb
