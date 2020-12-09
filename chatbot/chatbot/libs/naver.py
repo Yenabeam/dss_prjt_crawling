@@ -1,7 +1,9 @@
-import requests, json
+import requests
+import json
+
 
 def translate(naver_id, naver_secret, text, source="ko", target="en"):
-    params = { "source": source, "target": target, "text": text }
+    params = {"source": source, "target": target, "text": text}
     url = "https://openapi.naver.com/v1/papago/n2mt"
     headers = {
         "Content-Type": "application/json",
