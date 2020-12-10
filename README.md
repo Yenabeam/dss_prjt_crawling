@@ -18,6 +18,9 @@
 ### Details 
 #### Getting Started
 #### Prerequisites
+- python3, R
+- Mongodb, Mysql
+- kakao & slack api
 #### Dataset 
 #### 코드 설명 1 
 #### 코드 설명 2
