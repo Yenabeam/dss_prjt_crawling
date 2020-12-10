@@ -25,15 +25,25 @@
 #### 코드 설명 1 
 #### 코드 설명 2
 #### 코드 설명 3
+
 #### 코드 설명 2 
 - run.py
   - jungonara.py를 12개 카테고리에 대해 실행  후 mongo.py 실행
 - jungonara.py
   - 키워드를 입력하면 중고나라에서 크롤링 및 좌표 추출 및 mongodb에 저장
 - mongo.py 
-  - db 백업, 데이터 전처리 후 챗봇용 collection 생성, 카카오톡과 슬랙에 알림톡 발송, 2시간 단위 db 삭제
+  - db 백업, 데이터 전처리 후 챗봇용 collection 생성, slack_msg.py & kakao_msg.py 실행, 2시간 단위 db 삭제
+- kakao_msg.py
+  - 카카오톡으로 알림톡을 발송
 - kakao_token.py
   - 카카오 api token을 발급 & 갱신
+- slack_msg.py
+  - 슬랙으로 알림톡 발송
+- chatbot.py
+  - 슬랙 챗봇 실행
+- fleafully.py
+  - 챗봇 기능 구현
+
 #### 코드 설명 3
 - scrapy.py
   - 당근마켓에서 원하는 키워드 명으로 데이터를 crawling
