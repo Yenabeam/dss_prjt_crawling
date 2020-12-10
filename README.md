@@ -32,7 +32,7 @@ db 백업, 데이터 전처리 후 챗봇용 collection 생성, 카카오톡과 
   - 당근마켓에 있는 ~구~동 주소으로 부터 kakao local api를 통해 lat,lon 추출
 - jitter.R
   - 정확한 주소가 아니라 ~구~동이라던가 지하철명으로 되있어서 중복 되는 좌표값들이 맵에서 겹쳐보이는 걸 방지하기 위해 jitter함수로 중복값을 변경
-- mongo.py
+- mongodb.py
   - 모은 자료들을 mongoDB에 저장
 - get_data.js
   - mongoDB에서 node.js를 통해 json파일 형식의 데이터로 가져옴
