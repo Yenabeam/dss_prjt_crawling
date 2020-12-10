@@ -23,7 +23,8 @@
 #### 코드 설명 2
 #### 코드 설명 3
 #### 코드 설명 4 
-#### Mongo.py : db 백업, 데이터 전처리 후 챗봇용 collection 생성, 카카오톡과 슬랙에 알림톡 발송, 2시간 전 db 삭제
+#### Mongo.py 
+db 백업, 데이터 전처리 후 챗봇용 collection 생성, 카카오톡과 슬랙에 알림톡 발송, 2시간 단위 db 삭제
 #### 코드 설명 5
 - scrapy.py
   - 당근마켓에서 원하는 키워드 명으로 데이터를 crawling
@@ -40,7 +41,7 @@
 
 ## 4. Built with 
 - 김성준
-  - 중고나라 크롤링, MongoDB 관리, 슬랙 챗봇 제작, 카카오톡 api와 슬랙 webhook을 이용한 알림톡 발송, 리드미 일부 작성
+  - 중고나라 크롤링, MongoDB 관리, 슬랙 챗봇 제작, 카카오 api와 슬랙 webhook을 통한 알림톡 발송, 리드미 일부 작성
   - Git hub: https://github.com/alltimeno1
 - 전예나 
   - Flask를 통한 AWS 웹 서버 배포, css-js 템플릿을 통한 프론트엔드 구현, 번개장터 크롤링, DB - 웹 연동, 메일 발송 기능 구현, 리드미 작성 
