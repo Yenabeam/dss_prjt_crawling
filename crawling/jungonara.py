@@ -74,7 +74,7 @@ def overview(keyword):
         collection = db["C{}".format(today.strftime('%y%m%d%H'))]
         collection.insert(df)
     except:
-        print("Error : No {} Data".foramt(keyword))
+        print("Error : No {} Data".format(keyword))
     
     print("Done Crawling and Insert into Mongodb")
 
