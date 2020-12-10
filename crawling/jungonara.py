@@ -6,8 +6,11 @@ from selenium import webdriver
 import pandas as pd
 import time
 import configparser
+import requests
+import numpy as np
 import pymongo
 from datetime import datetime, timedelta
+
 
 
 def overview(keyword):
@@ -61,7 +64,23 @@ def overview(keyword):
         n += 1
 
     driver.quit()
-
+    
+    config = configparser.ConfigParser()
+    config.read('/home/ubuntu/masterpiece/kakao_api.ini')
+    kakao = config["kakao"]
+    headers = { "Authorization": "KakaoAK {}".format(kakao['rest_api']) }
+    
+    for each in df:
+        addr = each['region']
+        url = "https://dapi.kakao.com/v2/local/search/address.json?query={}".format(addr)
+        response = requests.get(url, headers=headers).json()
+        try: 
+            each['lat'] = response['documents'][0]['y']
+            each['lon'] = response['documents'][0]['x']
+        except:
+            each['lat'] = np.nan
+            each['lon'] = np.nan
+    
     today = datetime.now()
 
     try:
@@ -74,7 +93,7 @@ def overview(keyword):
         collection = db["C{}".format(today.strftime('%y%m%d%H'))]
         collection.insert(df)
     except:
-        print("Error : No {} Data".foramt(keyword))
+        print("Error : No {} Data".format(keyword))
     
     print("Done Crawling and Insert into Mongodb")
 
