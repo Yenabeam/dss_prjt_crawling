@@ -22,16 +22,16 @@
 #### 코드 설명 5 
 ## 4. Built with 
 - 김성준
-  - 
+  - 기여기여기여기여
   - Git hub: 
 - 전예나 
   - Flask를 통한 AWS 웹 서버 배포, css-js 템플릿을 통한 프론트엔드 구현, 번개장터 크롤링, DB - 웹 연동, 메일 발송 기능 구현, 리드미 작성 
   - Git hub: https://github.com/Yenabeam
 - 정하윤 
-  - 
+  - 기여기여기여기여
   - Git hub: 
 - 이화진 
-  - 
+  - 기여기여기여기여
   - Git hub: 
 ## 5. 그리고 
 #### 참고사이트 
