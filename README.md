@@ -14,7 +14,7 @@ Slack 챗봇을 통해 원하는 가격대, 조건, 지역의 물건을 상담�
 ### 이름은 왜 FleaFully 인가요
 fleamarket의 'flea'와 'fully'의 합성어로 중고 물품 구매로 좀 더 삶을 풍요롭게 하자는 의미를 담았습니다. 
 ## 2. 시스템 구조
-![fleafully-draw_yena](https://user-images.githubusercontent.com/72847093/101736444-bd7f2100-3b06-11eb-9bc0-d75cb7546081.png)
+![fleafully-draw_yena (1)](https://user-images.githubusercontent.com/72847093/101738884-21571900-3b0a-11eb-9118-212f5867e92c.png)
 ## 3. Contribute 
 ### Details 
 #### Getting Started
