@@ -3,18 +3,13 @@
 
 ## 1. 소개 
 ### 기획 의도, 그리고 우리의 목표 
-2020년 코로나19라는 악재 속에서 급성장하는 중고 마켓 시장, 다들 한번쯤 이용해 본 경험이 있으시죠?  
-하지만 가장 싸고 상태가 좋은 물건을 찾으려면 중고나라, 당근마켓, 번개장터, 헬로마켓 여러 사이트를 통해 손품을 파는 수 밖에 없어 지치진 않으셨나요?  
-FleaFully는 다양한 중고마켓을 통합으로 한 눈에 중고 물품을 쇼핑할 수 있도록 기획하였습니다! 중고물품이지만 더 싸고 더 좋은 물건을 찾을 준비, 다들 함께 하실까요?  
+설명설명설명 
 ### FleaFully를 통해 무엇을 할 수 있나요?
-FleaFully의 서비스는 카테고리별 각 중고 물품에 대한 4개사의 비교를 도와드립니다.  
-추가로 위치 기반 서비스를 활용하여 내 근처에 있는 중고물품을 보여주고,  
-Slack 챗봇을 통해 원하는 가격대, 조건, 지역의 물건을 상담을 받을 수가 있어요!  
-그리고 메일 구독 서비스까지 이용할 수 있습니다.   
+설명설명설명 
 ### 이름은 왜 FleaFully 인가요
-fleamarket의 'flea'와 'fully'의 합성어로 중고 물품 구매로 좀 더 삶을 풍요롭게 하자는 의미를 담았습니다. 
+설명설명 
 ## 2. 시스템 구조
-![fleafully-draw_yena (1)](https://user-images.githubusercontent.com/72847093/101738884-21571900-3b0a-11eb-9118-212f5867e92c.png)
+![fleafully-draw_yena](https://user-images.githubusercontent.com/72847093/101736444-bd7f2100-3b06-11eb-9bc0-d75cb7546081.png)
 ## 3. Contribute 
 ### Details 
 #### Getting Started
@@ -24,11 +19,11 @@ fleamarket의 'flea'와 'fully'의 합성어로 중고 물품 구매로 좀 더 
 #### 코드 설명 2
 #### 코드 설명 3
 #### 코드 설명 4 
-#### 코드 설명 5 
+#### Mongo.py : db 백업, 데이터 전처리 후 챗봇용 collection 생성, 카카오톡과 슬랙에 알림톡 발송, 2시간 전 db 삭제
 ## 4. Built with 
 - 김성준
-  - 기여기여기여기여
-  - Git hub: 
+  - 중고나라 크롤링, MongoDB 관리, 슬랙 챗봇 제작, 카카오톡 api와 슬랙 webhook을 이용한 알림톡 발송, 리드미 일부 작성
+  - Git hub: https://github.com/alltimeno1
 - 전예나 
   - Flask를 통한 AWS 웹 서버 배포, css-js 템플릿을 통한 프론트엔드 구현, 번개장터 크롤링, DB - 웹 연동, 메일 발송 기능 구현, 리드미 작성 
   - Git hub: https://github.com/Yenabeam
