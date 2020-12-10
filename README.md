@@ -9,7 +9,7 @@
 ### 이름은 왜 FleaFully 인가요
 설명설명 
 ## 2. 시스템 구조
-구조도 이미지 
+![fleafully-draw_yena](https://user-images.githubusercontent.com/72847093/101736444-bd7f2100-3b06-11eb-9bc0-d75cb7546081.png)
 ## 3. Contribute 
 ### Details 
 #### Getting Started
