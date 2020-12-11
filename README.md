@@ -40,8 +40,10 @@
   - jungonara.py를 12개 카테고리에 대해 실행  후 mongo.py 실행
 - jungonara.py
   - 키워드를 입력하면 중고나라에서 크롤링 및 좌표 추출 및 mongodb에 저장
+- dump.sh
+  - 외부 서버로 db 백업
 - mongo.py 
-  - db 백업, 데이터 전처리 후 챗봇용 collection 생성, slack_msg.py & kakao_msg.py 실행, 2시간 단위 db 삭제
+  - 데이터 전처리 후 챗봇용 collection 생성, slack_msg.py & kakao_msg.py 실행, 2시간 단위 db 삭제
 - kakao_msg.py
   - 카카오톡으로 알림톡을 발송
 - kakao_token.py
