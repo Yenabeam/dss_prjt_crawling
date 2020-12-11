@@ -23,8 +23,17 @@
 - kakao & slack api
 #### Dataset 
 #### 코드 설명 1 
-#### 코드 설명 2
-#### 코드 설명 3
+- fleafully.py
+  - flask 프레임워크를 활용한 웹 서버 실행 모듈 
+  - AWS 서버를 통해 WAS 구현 
+  - mongoDB 연결을 통해 특정 조건의 데이터를 불러옴 
+  - mysql 연결을 통해 프론트에서 user 입력값을 DB에 저장 
+- bunjang_crawl_all.py 
+  - json을 활용한 번개장터 크롤링 모듈
+  - 크롤링 후 mongo DB 데이터 입력 
+- template > mongo.html category.html kakaomap.html mail.html main.html
+  - 프론트엔드 구현을 위한 html 
+- mongo.html 
 #### 코드 설명 2 
 - run.py
   - jungonara.py를 12개 카테고리에 대해 실행  후 mongo.py 실행
