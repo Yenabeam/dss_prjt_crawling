@@ -26,7 +26,7 @@ def load_db():
     # backup database
     client = pymongo.MongoClient(mongodb_ip["ip_address_2"])
     collection = client.joongo["C{}".format(today.strftime('%y%m%d%H'))]
-    collection.insert(joongo_df.to_dict("records"))
+#     collection.insert(joongo_df.to_dict("records"))
     client.joongo.drop_collection("C{}".format(today_1.strftime('%y%m%d%H')))
         
     # preprocessing
