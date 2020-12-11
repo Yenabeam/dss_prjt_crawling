@@ -34,6 +34,7 @@
 - template > mongo.html category.html kakaomap.html mail.html main.html
   - 프론트엔드 구현을 위한 html 
 - mongo.html 
+  - flask 모듈에서 연결된 mongo DB의 데이터를 jinja2를 활용한 프론트 표현 
 #### 코드 설명 2 
 - run.py
   - jungonara.py를 12개 카테고리에 대해 실행  후 mongo.py 실행
