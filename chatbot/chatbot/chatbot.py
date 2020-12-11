@@ -25,7 +25,7 @@ def bot():
     print(username, token, text)
 
     # 문장 형식이 맞는지 확인
-    if text.find(":") < 0:
+    if text.find(":") <= 0:
 
         if "추천" in text:
             msg = fleafully.suggest()
@@ -41,22 +41,23 @@ def bot():
             return Response(), 200
 
     # 명령 문자열에 따라서 코드 실행
-    comm, data = text.split(":")[0], text.split(":")[1]
-
-    if "번역" in comm:
-        msg = naver.translate(Config.naver_id, Config.naver_secret, data)
-        slack.send_msg(Config.webhook_url, msg)
-    elif "시세" in comm:
-        msg = fleafully.count(data)
-        slack.send_msg(Config.webhook_url, msg)
-    elif "인치" in comm:
-        msg = fleafully.inch(data)
-        slack.send_msg(Config.webhook_url, msg)
-    elif "지역" in comm:
-        msg = fleafully.locate(data)
-        slack.send_msg(Config.webhook_url, msg)
     else:
-        msg = "{}은(는)없는 명령입니다.".format(comm)
+        comm, data = text.split(":")[0], text.split(":")[1]
+
+        if "번역" in comm:
+            msg = naver.translate(Config.naver_id, Config.naver_secret, data)
+            slack.send_msg(Config.webhook_url, msg)
+        elif "시세" in comm:
+            msg = fleafully.count(data)
+            slack.send_msg(Config.webhook_url, msg)
+        elif "인치" in comm:
+            msg = fleafully.inch(data)
+            slack.send_msg(Config.webhook_url, msg)
+        elif "지역" in comm:
+            msg = fleafully.locate(data)
+            slack.send_msg(Config.webhook_url, msg)
+        else:
+            msg = "{}은(는)없는 명령입니다.".format(comm)
 
     return Response(), 200
 
