@@ -13,7 +13,7 @@
 ### 이름은 왜 FleaFully 인가요
 중고 마켓이라는 Fleamarket과 온전함, 풍부함의 뜻을 가지고 있는 Full을 합쳐서 만든 이름입니다. 
 ## 2. 시스템 구조
-![fleafully-draw_yena](https://user-images.githubusercontent.com/72847093/101857026-ec020800-3ba9-11eb-8948-fbf964565613.png)
+![fleafully-draw_yena](https://user-images.githubusercontent.com/71831714/101885533-97788000-3bdd-11eb-94b8-5db03d840607.png)
 ## 3. Contribute 
 ### Details 
 #### Getting Started
