@@ -7,10 +7,10 @@
 </head>
 <body>
     <div id="map" style="width: 100%; height: 100vh;"></div>
-    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4f5517aee51dd99d425c74f27bae8e2f&libraries=clusterer"></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=yourkakaoapi&libraries=clusterer"></script>
 
     <script>
-        const url = "https://raw.githubusercontent.com/hayoon/HelloGit/main/data.json";
+        const url = "https://raw.githubusercontent.com/hayoon/HelloGit/main/data4.json";
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = { 
@@ -108,15 +108,15 @@
         fetch(url)
         .then((res) => res.json())
         .then(myJson => {
-         console.log(JSON.stringify(myJson.slice(0, 1500), null, 1))
+         console.log(JSON.stringify(myJson, null, 1))
 
          var markers = [];
  
-         for (var i=0; i < myJson.slice(0, 1500).length; i++) {
+         for (var i=0; i < myJson.length; i++) {
  
           // 마커를 생성합니다
           var marker = new kakao.maps.Marker({
-             position: new kakao.maps.LatLng(myJson[i]['lons'], myJson[i]['lats']), // 마커가 표시될 위치입니다 
+             position: new kakao.maps.LatLng(myJson[i]['lat'], myJson[i]['lon']), // 마커가 표시될 위치입니다 
              map: map, // 마커가 지도 위에 표시되도록 설정합니다
              clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
            });
