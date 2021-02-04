@@ -1,0 +1,53 @@
+<meta charset="UTF-8">
+<html>
+<table class="type04" id='ProductList'>
+    <style>
+        table.type04 {
+            border-collapse: separate;
+            border-spacing: 1px;
+            text-align: left;
+            line-height: 1.5;
+            border-top: 1px solid #ccc;
+          margin : 20px 10px;
+        }
+        table.type04 th {
+            width: 150px;
+            padding: 10px;
+            font-weight: bold;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
+        table.type04 td {
+            width: 350px;
+            padding: 10px;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
+      </style>
+
+  <thead>
+    <tr style="text-align: right;">
+      <th>title</th>
+      <th>price</th>
+      <th>region</th>
+      <th>desc</th>
+      <th>link</th>
+      <th>view_counts</th>
+      <th>market</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{i.title}} </td>
+        <td>{{i.price}}</td>
+        <td>{{i.region}}</td>
+        <td>{{i.desc}}</td>
+        <td><a href= "{{i.link}}" target="_blank">바로가기</a></td>
+        <td>{{i.view_counts}}</td>
+        <td>{{i.market}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</html>
